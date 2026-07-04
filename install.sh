@@ -21,8 +21,14 @@ say "Instalando agentes, skills, commands, rules e squads em $CLAUDE_DIR"
 mkdir -p "$CLAUDE_DIR/agents" "$CLAUDE_DIR/skills" "$CLAUDE_DIR/commands" \
          "$CLAUDE_DIR/rules" "$CLAUDE_DIR/squads" "$AGENTS_DIR/skills" "$CLAUDE_DIR/hooks"
 
-copy(){ # src_rel dest  — não sobrescreve destino inteiro, faz merge
-  [ -d "$REPO_DIR/$1" ] && rsync -a "$REPO_DIR/$1/" "$2/" && ok "$1 → $2"
+copy(){ # src_rel dest  — merge não-destrutivo; usa rsync se existir, senão cp
+  [ -d "$REPO_DIR/$1" ] || return 0
+  if command -v rsync >/dev/null 2>&1; then
+    rsync -a "$REPO_DIR/$1/" "$2/"
+  else
+    mkdir -p "$2" && cp -R "$REPO_DIR/$1/." "$2/"
+  fi
+  ok "$1 → $2"
 }
 copy agents        "$CLAUDE_DIR/agents"
 copy commands      "$CLAUDE_DIR/commands"

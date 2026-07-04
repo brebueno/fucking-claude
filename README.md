@@ -84,7 +84,7 @@ bash install.sh          # instala TODOS os 211 agentes + skills + commands + ru
 bash install.sh --full   # + Hermes, OpenWA e impeccable (serviços externos)
 ```
 
-O `install.sh` copia o arsenal inteiro pra `~/.claude` (e o skill bus pra `~/.agents/skills`). Depois, passos manuais opcionais:
+O `install.sh` copia o arsenal inteiro pra `~/.claude` (e o skill bus pra `~/.agents/skills`), sem apagar o que já existe. **No Windows, rode via Git Bash ou WSL.** Depois, passos manuais opcionais:
 
 - **CLAUDE.md** — cole o bloco de `config/CLAUDE.snippet.md` no seu.
 - **Hermes** (opcional, 24/7) — `hermes setup` com cérebro grátis: ver [docs/hermes-ollama.md](docs/hermes-ollama.md).
