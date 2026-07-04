@@ -19,13 +19,20 @@
 
 ## O que é isto
 
-Não é mais um framework. É a **config de orquestração** que transforma o Claude Code
-num operador semiautônomo (apelido: **Jarvis**): você fala o objetivo em português
-normal e ele **dispara o especialista certo sozinho** — sem você lembrar nome de agente.
+Não é mais um framework. É a **config de orquestração completa** que transforma o
+Claude Code num operador semiautônomo (apelido: **Jarvis**): você fala o objetivo em
+português normal e ele **dispara o especialista certo sozinho** — sem você lembrar
+nome de agente.
 
-Este repo **reproduz esse setup numa máquina nova** (`install.sh`) e **documenta**
-tudo que roda. Não republica código de terceiros nem carrega secret/dado de cliente:
-puxa cada peça da fonte oficial.
+Este repo **carrega o arsenal inteiro** e reproduz o setup numa máquina nova com um
+comando. Sem secret, sem dado de cliente.
+
+<p align="center">
+  <img src="https://img.shields.io/badge/agentes-211-6e8bff?style=flat-square" />
+  <img src="https://img.shields.io/badge/skills-1086-3ddc84?style=flat-square" />
+  <img src="https://img.shields.io/badge/commands-92-f5b74e?style=flat-square" />
+  <img src="https://img.shields.io/badge/squads-13-8b909a?style=flat-square" />
+</p>
 
 ## As 4 camadas
 
@@ -73,10 +80,11 @@ Você nunca precisa saber o nome do agente. `/jarvis <pedido>` força o modo.
 ```bash
 git clone https://github.com/brebueno/fucking-claude.git
 cd fucking-claude
-bash install.sh
+bash install.sh          # instala TODOS os 211 agentes + skills + commands + rules + squads
+bash install.sh --full   # + Hermes, OpenWA e impeccable (serviços externos)
 ```
 
-Depois, os passos manuais (precisam de você):
+O `install.sh` copia o arsenal inteiro pra `~/.claude` (e o skill bus pra `~/.agents/skills`). Depois, passos manuais opcionais:
 
 - **CLAUDE.md** — cole o bloco de `config/CLAUDE.snippet.md` no seu.
 - **Hermes** (opcional, 24/7) — `hermes setup` com cérebro grátis: ver [docs/hermes-ollama.md](docs/hermes-ollama.md).
@@ -98,11 +106,15 @@ Depois, os passos manuais (precisam de você):
 
 ## Arquivos
 
-- `install.sh` — bootstrap
-- `stack.yaml` — manifest do que compõe o stack
-- `skills/jarvis/SKILL.md` — o roteador
-- `hooks/jarvis-init.sh` — liga o modo no boot
-- `docs/` — guias (Hermes+Ollama, OpenWA, arquitetura)
+- `agents/` — 211 agentes (todos os que foram coletados, inclusive os antigos)
+- `skills-claude/` — skills do Claude Code (ECC, superpowers, hm-*, catálogos…)
+- `agents-skills/` — skill bus universal (find-skills, task-observer, last30days, jarvis)
+- `commands/` — 92 slash commands
+- `rules/` — rules ECC (por linguagem + comuns)
+- `squads/` — 13 squads opensquad genéricos (copy, design, traffic, C-level…)
+- `install.sh` — bootstrap (instala tudo; `--full` traz os serviços)
+- `stack.yaml` — manifest · `hooks/jarvis-init.sh` — liga o Jarvis no boot
+- `docs/` — guias (Hermes+Ollama, arquitetura)
 
 ## Créditos das peças de terceiros
 
