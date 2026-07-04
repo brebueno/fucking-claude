@@ -1,0 +1,19 @@
+# Nunca versionar secrets nem dado de cliente
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+credentials/
+**/_data_privado/
+settings.local.json
+
+# Runtime / caches
+node_modules/
+__pycache__/
+*.log
+.DS_Store
+dashboard/dist/
+
+# Nada de config pessoal com token
+config/settings.json

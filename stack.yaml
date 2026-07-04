@@ -1,0 +1,56 @@
+# fucking-claude — manifest do stack de orquestração
+# Fonte de verdade do que o install.sh reproduz. Nada de secrets/cliente aqui.
+
+meta:
+  name: fucking-claude
+  owner: brebueno
+  descricao: >
+    Config semiautônoma de agentes (Jarvis) sobre Claude Code + Hermes.
+    Um skill bus compartilhado, roteamento automático, auto-evolução.
+
+camadas:
+  skill_bus:
+    descricao: Store universal de skills (skills.sh). Symlinkado em todo harness.
+    caminho: ~/.agents/skills
+    skills:
+      - nome: last30days
+        fonte: mvanhorn/last30days-skill
+        faz: Pesquisa social (Reddit/X/YT/TikTok/HN) rankeada por engajamento real
+        risco: "High (Snyk/Gen) — revisar antes de produção"
+      - nome: task-observer
+        fonte: rebelytics/one-skill-to-rule-them-all
+        faz: Meta-skill que assiste sessões e melhora/cria skills sozinha
+      - nome: find-skills
+        fonte: vercel-labs/skills (subpasta find-skills)
+        faz: Gerenciador de pacotes de skills; descobre skill pronta pra um pedido
+
+  cockpit:
+    descricao: Claude Code — trabalho hands-on (dev + marketing)
+    inclui:
+      - ECC harness (211 agents, ~280 skills, 92 commands)
+      - superpowers (processo — brainstorming, TDD, debugging)
+      - opensquad (squads de marketing role-based)
+      - impeccable (fonte pbakaus/impeccable — 23 comandos + 45 detectores de UI)
+
+  sempre_ligado:
+    descricao: Operação 24/7 reachable pelo celular
+    componentes:
+      - nome: Hermes
+        fonte: nousresearch/hermes-agent
+        faz: Agente autônomo self-improving, memória persistente, cron, multi-canal
+        instala: "curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash"
+        setup_manual: "hermes setup (provider + API key)"
+      - nome: OpenWA
+        fonte: rmyndharis/OpenWA
+        faz: Gateway WhatsApp API (REST) — canal in/out
+        setup_manual: "npm install && npm run dev, escanear QR (risco de ban por ToS)"
+
+  jarvis:
+    descricao: A camada de roteamento (autoria própria) — o que torna semiautônomo
+    componentes:
+      - skills/jarvis/SKILL.md   # roteador/maestro
+      - hooks/jarvis-init.sh     # liga o modo no SessionStart
+      - config/CLAUDE.snippet.md # diretiva pro CLAUDE.md
+
+referencias:
+  - ComposioHQ/awesome-claude-skills   # catálogo (não instalável)
