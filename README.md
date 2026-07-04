@@ -1,4 +1,18 @@
-<h1 align="center">fucking-claude</h1>
+<p align="center">
+  <img src="assets/banner.svg" alt="fucking-claude" width="100%" />
+</p>
+
+<p align="center">
+  <a href="#instalação-máquina-nova"><img src="https://img.shields.io/badge/setup-1%20comando-6e8bff?style=for-the-badge" alt="setup" /></a>
+  <img src="https://img.shields.io/badge/modo-Jarvis%20semiaut%C3%B4nomo-3ddc84?style=for-the-badge" alt="jarvis" />
+  <img src="https://img.shields.io/badge/24%2F7-Hermes-f5b74e?style=for-the-badge" alt="hermes" />
+  <img src="https://img.shields.io/badge/license-MIT-8b909a?style=for-the-badge" alt="MIT" />
+</p>
+
+<p align="center">
+  <b><a href="#o-que-é-isto">O que é</a> · <a href="#as-4-camadas">Arquitetura</a> · <a href="#como-usar-o-menos-trabalho">Como usar</a> · <a href="#instalação-máquina-nova">Instalar</a> · <a href="#cérebros-o-que-roda-onde">Cérebros</a></b>
+</p>
+
 <p align="center"><em>Config de agentes semiautônoma sobre Claude Code. Um cérebro forte, roteamento automático, auto-evolução — e pouco trabalho pra você.</em></p>
 
 ---
